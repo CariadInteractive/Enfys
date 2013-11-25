@@ -28,7 +28,7 @@ void Palette::loadPaletteImage(string path) {
 	float h = image.getHeight();
 	int n = image.getPixelsRef().getNumChannels();
 	if(n<3) {
-		ofLogError() << "Palette image doesn't have enough colour channels (it's got " << n << ")!!";
+		ofLogError() << "Palette image doesn't have enough colour channels (it's got " << n		<< ")!!";
 		return;
 	}
 	for(int i = 0; i < h; i++) {

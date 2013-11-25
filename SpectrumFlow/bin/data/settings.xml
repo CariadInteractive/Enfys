@@ -6,6 +6,11 @@
     <setting id="draw optical flow" value="false"></setting>
     <setting id="flip horizontal" value="true"></setting>
     <setting id="Particles" value=""></setting>
-    <setting id="max num particles" value="5680"></setting>
-    <setting id="sensitivity" value="0.113333337"></setting>
+    <setting id="max num particles" value="4060"></setting>
+    <setting id="sensitivity" value="0.579999983"></setting>
+    <setting id="max age (in frames)" value="127"></setting>
+    <setting id="particle speed" value="3"></setting>
+    <setting id="movement damping" value="2.263999939"></setting>
+    <setting id="min radius" value="1.000000000"></setting>
+    <setting id="max radius" value="30.000000000"></setting>
 </settings>

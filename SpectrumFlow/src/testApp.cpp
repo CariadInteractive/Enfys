@@ -46,7 +46,8 @@ void testApp::setupGui() {
 //--------------------------------------------------------------
 void testApp::update(){
 	vision.update();
-	particles.update(vision.getOpticalFlow());
+	particles.update(vision.getOpticalFlow(), volume);
+	ofSetWindowTitle("Enfys - " + ofToString(ofGetFrameRate(), 0) + " fps");
 }
 
 
