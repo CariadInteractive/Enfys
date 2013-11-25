@@ -1,0 +1,11 @@
+<settings>
+    <setting id="Audio" value=""></setting>
+    <setting id="mic input gain" value="5.000000000"></setting>
+    <setting id="mic volume" value=""></setting>
+    <setting id="Computer Vision" value=""></setting>
+    <setting id="draw optical flow" value="false"></setting>
+    <setting id="flip horizontal" value="true"></setting>
+    <setting id="Particles" value=""></setting>
+    <setting id="max num particles" value="5680"></setting>
+    <setting id="sensitivity" value="0.113333337"></setting>
+</settings>

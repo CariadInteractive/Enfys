@@ -10,42 +10,30 @@
  *    \  \:\        \  \:\         |  |:/       \  \::/       \  \::/        |  |:|   
  *     \__\/         \__\/         |__|/         \__\/         \__\/         |__|/   
  *
- *  Description: 
- *				 
- *  Vision.h, created by Marek Bereza on 25/11/2013.
+ *  Description: Really simple class for looking up colours from a PNG.
+ *				 The colours must be vertically distributed in the png (i.e.
+				 you'll use a tall narrow image, not a short wide one.)
+ *  Palette.h, created by Marek Bereza on 25/11/2013.
  */
 
 #pragma once
+
 #include "ofMain.h"
-#include "ofxOpenCv.h"
-#include "ofxCvOpticalFlowLK.h"
-#include "ofxXmlGui.h"
 
 
-
-
-class Vision {
-	
+class Palette {
 public:
-	void setup();
-	void setupGui(xmlgui::SimpleGui &gui);
 	
-	
-	void update();
-	void draw(bool debug);
-	ofxCvOpticalFlowLK &getOpticalFlow();
 
+	// to find a colour, pass in a number from 0 to 1
+	ofColor lookupColor(float pos);
+
+	void loadPaletteImage(string path);
+	
+	void draw(float x, float y, float w, float h);
+	
 private:
-	bool flipHorizontal;
+	ofImage image;
+	vector<ofColor> colorLookup;
 	
-	void computeOpticalFlow();
-	
-	ofVideoGrabber grabber;
-	
-	ofxCvColorImage frame;
-	ofxCvGrayscaleImage greyCurr;
-	ofxCvGrayscaleImage greyPrev;
-	
-	ofxCvOpticalFlowLK flow;
-	int flowSize;
 };

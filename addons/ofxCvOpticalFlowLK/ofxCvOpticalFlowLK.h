@@ -48,10 +48,10 @@ public:
 			return false;
 		}
 	}
-	void forceAtPos(float x, float y, float *dx, float *dy) {
+	void forceAtPos(float x, float y, float &dx, float &dy) {
 		if(x<captureWidth && y<captureHeight && x>=0 && y>=0) {
-			*dx = cvGetReal2D( vel_x, y, x );
-			*dy = cvGetReal2D( vel_y, y, x );
+			dx = cvGetReal2D( vel_x, y, x );
+			dy = cvGetReal2D( vel_y, y, x );
 		}
 	}
 	

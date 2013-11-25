@@ -56,6 +56,7 @@
 		EA3E31BE184377E600A5E788 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA3E31B8184377E600A5E788 /* tinyxmlerror.cpp */; };
 		EA3E31BF184377E600A5E788 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA3E31B9184377E600A5E788 /* tinyxmlparser.cpp */; };
 		EA3E31C0184377E600A5E788 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA3E31BB184377E600A5E788 /* ofxXmlSettings.cpp */; };
+		EA3E31C51843B52D00A5E788 /* Palette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EA3E31C41843B52D00A5E788 /* Palette.cpp */; };
 		b266578fc55d23bfebc042e7628673a3 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ecf8674c7975f1063c5e30ca6284e945 /* ofxGuiGroup.cpp */; };
 		b56fe57cc35806596d38118c4b1b847e /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 802251baf1b35b1d67b32fd0dec4da78 /* ofxSliderGroup.cpp */; };
 		d3301f6a0b43bb293ed97c1d5d26c840 /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8a4dd23693dfab8ec05faa5d62c49d8c /* ofxCvShortImage.cpp */; };
@@ -265,6 +266,10 @@
 		EA3E31B9184377E600A5E788 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		EA3E31BB184377E600A5E788 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		EA3E31BC184377E600A5E788 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		EA3E31C118439C3A00A5E788 /* Centerer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Centerer.h; sourceTree = "<group>"; };
+		EA3E31C218439DC100A5E788 /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		EA3E31C31843B1BE00A5E788 /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
+		EA3E31C41843B52D00A5E788 /* Palette.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Palette.cpp; sourceTree = "<group>"; };
 		a0399084868e7cafb7e3d8e975d55095 /* retina.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = retina.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib/retina.hpp; sourceTree = SOURCE_ROOT; };
 		a15e0125b8c9b7f01ded56958ff73de8 /* matrix.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = matrix.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/matrix.h; sourceTree = SOURCE_ROOT; };
 		a2ee5e80b134ea52a8b369d28837350a /* eigen.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = eigen.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/eigen.hpp; sourceTree = SOURCE_ROOT; };
@@ -596,10 +601,14 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
+				EA3E31C118439C3A00A5E788 /* Centerer.h */,
+				EA3E31C218439DC100A5E788 /* constants.h */,
 				EA3E30AE184370FA00A5E788 /* Vision.cpp */,
 				EA3E30AF184370FA00A5E788 /* Vision.h */,
 				EA3E30AB18436FD900A5E788 /* ParticleSystem.cpp */,
 				EA3E30AC18436FD900A5E788 /* ParticleSystem.h */,
+				EA3E31C31843B1BE00A5E788 /* Palette.h */,
+				EA3E31C41843B52D00A5E788 /* Palette.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1030,6 +1039,7 @@
 				EA3E31BE184377E600A5E788 /* tinyxmlerror.cpp in Sources */,
 				EA3E31BF184377E600A5E788 /* tinyxmlparser.cpp in Sources */,
 				EA3E31C0184377E600A5E788 /* ofxXmlSettings.cpp in Sources */,
+				EA3E31C51843B52D00A5E788 /* Palette.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

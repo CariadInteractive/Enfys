@@ -12,40 +12,14 @@
  *
  *  Description: 
  *				 
- *  Vision.h, created by Marek Bereza on 25/11/2013.
+ *  constants.h, created by Marek Bereza on 25/11/2013.
  */
 
-#pragma once
-#include "ofMain.h"
-#include "ofxOpenCv.h"
-#include "ofxCvOpticalFlowLK.h"
-#include "ofxXmlGui.h"
+#define WIDTH 1024
+#define HEIGHT 768
 
 
 
+#define VISION_WIDTH 640
+#define VISION_HEIGHT 480
 
-class Vision {
-	
-public:
-	void setup();
-	void setupGui(xmlgui::SimpleGui &gui);
-	
-	
-	void update();
-	void draw(bool debug);
-	ofxCvOpticalFlowLK &getOpticalFlow();
-
-private:
-	bool flipHorizontal;
-	
-	void computeOpticalFlow();
-	
-	ofVideoGrabber grabber;
-	
-	ofxCvColorImage frame;
-	ofxCvGrayscaleImage greyCurr;
-	ofxCvGrayscaleImage greyPrev;
-	
-	ofxCvOpticalFlowLK flow;
-	int flowSize;
-};
