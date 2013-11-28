@@ -63,15 +63,15 @@ void Particle::setup(const ofVec2f &pos, const ofVec2f &vel, float volume) {
 
 void Particle::update(const float &delta) {
 	pos += vel*delta;
-	pos += gravity;
+	pos += gravity*delta;
 	age+=delta;
 	vel *= DAMPING_COEFFICIENT;
 	if(age>MAX_AGE) dead = true;
 	// kill myself if I'm off the screen.
-	float radiusOfLargestParticle = 20; // arbitary at the mo, maybe it doesn't matter
-	if(pos.x<-radiusOfLargestParticle || pos.y<-radiusOfLargestParticle
-	   || pos.x+radiusOfLargestParticle> WIDTH ||
-	   pos.y+radiusOfLargestParticle>HEIGHT
+	float radiusOfLargestParticle = radius; // arbitary at the mo, maybe it doesn't matter
+	if(pos.x<-radiusOfLargestParticle || pos.y<radiusOfLargestParticle
+	   || pos.x-radiusOfLargestParticle> WIDTH ||
+	   pos.y-radiusOfLargestParticle>HEIGHT
 	   ) {
 		dead = true;
 	}

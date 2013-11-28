@@ -45,6 +45,8 @@ void ParticleSystem::setupGui(xmlgui::SimpleGui &gui) {
 	gui.addSlider("movement damping", Particle::DAMPING, 3, 0.7);
 	gui.addSlider("min radius", Particle::MIN_RADIUS, 1, 100);
 	gui.addSlider("max radius", Particle::MAX_RADIUS, 1, 200);
+	gui.addSlider2D("gravity", Particle::gravity, -10, 10, -10, 10);
+	
 }
 
 
