@@ -9,12 +9,19 @@
 // to find a colour, pass in a number from 0 to 1
 ofColor Palette::lookupColor(float pos) {
 	int index = pos * colorLookup.size();
-	if(index>=0 && index<colorLookup.size()) {
-		return colorLookup[index];
-	} else {
-		ofLogError() << "Colour lookup out of bounds (" << pos << ") !!";
-		return ofColor(255, 255, 255);
+	if(index<0) index = 0;
+	if(index>=colorLookup.size()) {
+		index = colorLookup.size() - 1;
 	}
+	
+
+	return colorLookup[index];
+}
+
+
+ofFloatColor Palette::lookupFloatColor(float pos) {
+	ofColor c = lookupColor(pos);
+	return ofFloatColor(c.r/255.f, c.g/255.f, c.b/255.f);
 }
 
 

@@ -11,10 +11,12 @@ void Vision::setup() {
 	grabber.initGrabber(VISION_WIDTH, VISION_HEIGHT);
 	
 	frame.allocate(VISION_WIDTH, VISION_HEIGHT);
-	greyCurr.allocate(VISION_WIDTH, VISION_HEIGHT);
-	greyPrev.allocate(VISION_WIDTH, VISION_HEIGHT);
+	grey.allocate(VISION_WIDTH, VISION_HEIGHT);
 	
-	flow.allocate(VISION_WIDTH, VISION_HEIGHT);
+	greyCurr.allocate(VISION_WIDTH/2, VISION_HEIGHT/2);
+	greyPrev.allocate(VISION_WIDTH/2, VISION_HEIGHT/2);
+	
+	flow.allocate(VISION_WIDTH/2, VISION_HEIGHT/2);
 	flowSize = 3;
 	flipHorizontal = true;
 }
@@ -34,7 +36,9 @@ void Vision::update() {
 void Vision::computeOpticalFlow() {
 	frame.setFromPixels(grabber.getPixels(), grabber.getWidth(), grabber.getHeight());
 	if(flipHorizontal) frame.mirror(false, true);
-	greyCurr = frame;
+	grey = frame;
+	greyCurr.scaleIntoMe(grey);
+	
 	
 	flow.calc(greyPrev, greyCurr, flowSize);
 	flow.blur(2);

@@ -43,6 +43,9 @@ private:
 	ofVideoGrabber grabber;
 	
 	ofxCvColorImage frame;
+	ofxCvGrayscaleImage grey;
+	
+	
 	ofxCvGrayscaleImage greyCurr;
 	ofxCvGrayscaleImage greyPrev;
 	

@@ -8,6 +8,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 	vision.setup();
+	particles.setup();
 	Particle::loadPalette();
 
 
@@ -40,6 +41,7 @@ void testApp::setupGui() {
 	particles.setupGui(gui);
 
 	gui.loadSettings("settings.xml");
+	gui.setOpaque(true);
 	gui.setEnabled(false);
 }
 

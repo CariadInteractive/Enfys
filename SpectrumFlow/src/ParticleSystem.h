@@ -25,13 +25,18 @@
 
 class ParticleSystem {
 public:
+	void setup();
 	
 	// spawns a particle at this position.
 	void spawn(ofVec2f p, ofVec2f v);
 	void setupGui(xmlgui::SimpleGui &gui);
 	void update(ofxCvOpticalFlowLK &flow, float volume);
 	void draw();
-	deque<Particle> particles;
+	list<Particle> particles;
 	int MAX_NUM_PARTICLES;
 	float sensitivity;
+	ofVboMesh vbo;
+	float volume;
+	ofImage circle;
+	float lastFrameTime;
 };

@@ -8,7 +8,10 @@
 #include "constants.h"
 
 
-
+void ParticleSystem::setup() {
+	circle.loadImage("circle.png");
+	lastFrameTime = ofGetElapsedTimef();
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void ParticleSystem::spawn(ofVec2f p, ofVec2f v) {
 	
@@ -21,17 +24,21 @@ void ParticleSystem::spawn(ofVec2f p, ofVec2f v) {
 	// slightly because the optical flow is quantized
 	ofVec2f jitter(ofRandom(-7, 7), ofRandom(-7, 7));
 	particles.push_back(Particle());
-	particles.back().setup(p+jitter, vel);
-	while(particles.size()>MAX_NUM_PARTICLES) {
+	particles.back().setup(p+jitter, vel, volume);
+
+	
+	while(Particle::count>MAX_NUM_PARTICLES) {
+
 		particles.pop_front();
 	}
+
 }
 
 void ParticleSystem::setupGui(xmlgui::SimpleGui &gui) {
 	MAX_NUM_PARTICLES = 5000;
 	sensitivity = 0.5;
 	gui.addTitle("Particles");
-	gui.addSlider("max num particles", MAX_NUM_PARTICLES, 1000, 10000);
+	gui.addSlider("max num particles", MAX_NUM_PARTICLES, 1000, 40000);
 	gui.addSlider("sensitivity", sensitivity);
 	gui.addSlider("max age (in frames)", Particle::MAX_AGE, 0, 1000);
 	gui.addSlider("particle speed", Particle::MAX_SPEED, 0.1, 20);
@@ -42,10 +49,10 @@ void ParticleSystem::setupGui(xmlgui::SimpleGui &gui) {
 
 
 void ParticleSystem::update(ofxCvOpticalFlowLK &flow, float volume) {
+	this->volume = volume;
 	float step = 5;
 	float dx = 0, dy = 0;
 	
-	Particle::RADIUS = ofMap(volume, 0, 1, Particle::MIN_RADIUS, Particle::MAX_RADIUS, true);
 	
 	// this turns the range [3-0.7] to a range of somethign like [0.9-0.999999]
 	// (some sort of log mapping.
@@ -67,18 +74,35 @@ void ParticleSystem::update(ofxCvOpticalFlowLK &flow, float volume) {
 		}
 	}
 	
-	for(int i = 0; i < particles.size(); i++) {
-		particles[i].update();
-		if(particles[i].isDead()) {
-			particles.erase(particles.begin() + i);
-			i--;
+	// rather than having a delta in seconds, this is a delta normalized
+	// to the desired frame duration
+	float delta = ofGetElapsedTimef() - lastFrameTime;
+	delta *= 30.f;
+	lastFrameTime = ofGetElapsedTimef();
+	
+//	for(int i = 0; i < particles.size(); i++) {
+	for(list<Particle>::iterator it = particles.begin(); it != particles.end();) {
+		(*it).update(delta);
+		if((*it).isDead()) {
+			it = particles.erase(it);
+		} else {
+			it++;
 		}
 	}
 }
 
 
 void ParticleSystem::draw() {
-	for(int i = 0; i < particles.size(); i++) {
-		particles[i].draw();
+	vbo.clear();
+	vbo.setMode(OF_PRIMITIVE_TRIANGLES);
+	for(list<Particle>::iterator it = particles.begin(); it != particles.end(); it++) {
+		(*it).addToVbo(vbo);
+//		particles[i].draw();
 	}
+	
+
+	circle.bind();
+	vbo.draw();
+	circle.unbind();
+	
 }

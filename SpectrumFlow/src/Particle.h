@@ -22,13 +22,25 @@
 
 class Particle {
 public:
-	void setup(ofVec2f pos, ofVec2f vel);
-	void update();
+	Particle();
+	~Particle();
+	
+	void setup(const ofVec2f &pos, const ofVec2f &vel, float volume);
+	
+	// delta is normalized frame duration
+	void update(const float &delta);
 	void draw();
+	
+	// call this to add a quad to a vbo instead of
+	// drawing immediately with draw()
+	void addToVbo(ofVboMesh &vbo);
+	
 	
 	bool isDead();
 	
-	int age;
+	float age;
+	
+	float radius;
 	
 	// this is for loading the image that
 	// holds the colour palette.
@@ -50,25 +62,24 @@ public:
 	static float DAMPING_COEFFICIENT;
 	
 	
-	// this gets changed by the volume
-	static float RADIUS;
+	static int count;
 	
 	static float MIN_RADIUS;
 	static float MAX_RADIUS;
+	static ofVec2f gravity;
 	
-	static ofImage circle;
 	
 	// END: CONSTANTS
 	////////////////////////////////////////////////////////////
+	ofVec3f points[5];
 	
-	
-	
+	vector<ofVec2f> texCoords;
 private:
 	
 	
 	// each particle's colour is constant
-	ofColor color;
-	
+	ofFloatColor color;
+	vector<ofFloatColor> colors;
 	ofVec2f pos;
 	ofVec2f vel;
 	bool dead;

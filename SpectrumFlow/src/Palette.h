@@ -27,7 +27,7 @@ public:
 
 	// to find a colour, pass in a number from 0 to 1
 	ofColor lookupColor(float pos);
-
+	ofFloatColor lookupFloatColor(float pos); // float colour version
 	void loadPaletteImage(string path);
 	
 	void draw(float x, float y, float w, float h);
