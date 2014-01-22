@@ -1,17 +1,17 @@
 <settings>
     <setting id="Audio" value=""></setting>
-    <setting id="mic input gain" value="5.000000000"></setting>
+    <setting id="mic input gain" value="1.800000072"></setting>
     <setting id="mic volume" value=""></setting>
     <setting id="Computer Vision" value=""></setting>
     <setting id="draw optical flow" value="false"></setting>
     <setting id="flip horizontal" value="true"></setting>
     <setting id="Particles" value=""></setting>
     <setting id="max num particles" value="18940"></setting>
-    <setting id="sensitivity" value="1.000000000"></setting>
+    <setting id="sensitivity" value="0.000000000"></setting>
     <setting id="max age (in frames)" value="80"></setting>
-    <setting id="particle speed" value="9"></setting>
+    <setting id="particle speed" value="4"></setting>
     <setting id="movement damping" value="2.095333338"></setting>
-    <setting id="min radius" value="1.000000000"></setting>
-    <setting id="max radius" value="108.460006714"></setting>
-    <setting id="gravity" value="-0.133333206,6.533332825"></setting>
+    <setting id="min radius" value="4.960000038"></setting>
+    <setting id="max radius" value="36.819999695"></setting>
+    <setting id="gravity" value="0.000000000,0.000000000"></setting>
 </settings>
