@@ -4,3 +4,6 @@
 [submodule "addons/ofxCv"]
 	path = addons/ofxCv
 	url = git://github.com/kylemcdonald/ofxCv.git
+[submodule "addons/ofxFatLines"]
+	path = addons/ofxFatLines
+	url = git://github.com/roymacdonald/ofxFatLines.git

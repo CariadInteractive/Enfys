@@ -1,0 +1,20 @@
+<settings>
+    <setting id="Audio" value=""></setting>
+    <setting id="mic input gain" value="1.800000072"></setting>
+    <setting id="mic volume" value=""></setting>
+    <setting id="Computer Vision" value=""></setting>
+    <setting id="draw tracker" value="true"></setting>
+    <setting id="flip horizontal" value="false"></setting>
+    <setting id="tracking colour" value="0.705882370,0.215686291,0.239215702,1.000000000"></setting>
+    <setting id="pick colour" value="false"></setting>
+    <setting id="tracking threshold" value="20.399999619"></setting>
+    <setting id="Particles" value=""></setting>
+    <setting id="max num particles" value="18940"></setting>
+    <setting id="sensitivity" value="0.666666687"></setting>
+    <setting id="max age (in frames)" value="80"></setting>
+    <setting id="particle speed" value="4"></setting>
+    <setting id="movement damping" value="2.095333338"></setting>
+    <setting id="min radius" value="35.979999542"></setting>
+    <setting id="max radius" value="137.646667480"></setting>
+    <setting id="gravity" value="0.000000000,0.000000000"></setting>
+</settings>
