@@ -1,12 +1,10 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
-
-
 #include "ofMain.h"
-#include "ofxAubioAnalyzer.h"
+#include "ofxAubio.h"
 
-class testApp : public ofSimpleApp{
+class testApp : public ofBaseApp{
 	
 	public:
 				
@@ -19,8 +17,8 @@ class testApp : public ofSimpleApp{
 		void mouseMoved(int x, int y );
 		void mouseDragged(int x, int y, int button);
 		void mousePressed(int x, int y, int button);
-		void mouseReleased();		
-		void audioReceived		(float * input, int bufferSize, int nChannels);
+		void mouseReleased();
+    
     string noteFromIndex(int index);
     string justNoteFromIndex(int index);
     string noteFromFrequency(float frequency);
@@ -30,10 +28,13 @@ class testApp : public ofSimpleApp{
     ofColor colourForNoteIndex(int index); //pick a colour on one of 7 note indexes
     string stringForNoteIndex(int index); //not letter based on 0..7
 		
-    float * left;
-    float * right;
-
-    ofxAubioAnalyzer AA;
+    void audioIn(float * input, int bufferSize, int nChannels);
+    
+    vector <float> left;
+    vector <float> right;
+    ofSoundStream soundStream;
+    
+    ofxAubio aubio;
 
     ofTrueTypeFont dinFont;
     

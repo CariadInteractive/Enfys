@@ -12,12 +12,19 @@ void testApp::setup(){
 	// 256 samples per buffer
 	// 4 num buffers (latency)
 	
-	//setup of sound input
-	ofSoundStreamSetup(0, 2, this, 44100, 256, 4);
-	left = new float[256];
-	right = new float[256];
+	soundStream.listDevices();
 	
-	AA.setup();
+	//if you want to set a different device id
+	//soundStream.setDeviceID(0); //bear in mind the device id corresponds to all audio devices, including  input-only and output-only devices.
+	
+	int bufferSize = 256;
+	
+	
+	left.assign(bufferSize, 0.0);   // initialize the left buffer
+	right.assign(bufferSize, 0.0);  // initialize the right buffer
+	soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+    
+    aubio.setup();
 	
 	dinFont.loadFont("DIN.otf", 24);
     
@@ -393,8 +400,8 @@ string testApp::midiToString(int aMidiNote){
 //--------------------------------------------------------------
 void testApp::update(){
     
-    int currentCircleIndex = circleIndexToFillFromMidiNoteIndexed(snapFreqToMIDI(AA.pitch)%12);
-    circleFillValues[currentCircleIndex] += AA.amplitude/100.f;
+    int currentCircleIndex = circleIndexToFillFromMidiNoteIndexed(snapFreqToMIDI(aubio.pitch)%12);
+    circleFillValues[currentCircleIndex] += aubio.amplitude/100.f;
     
     for(int i=0; i < circleFillValues.size(); i++){
         if(circleFillValues[i] > 1.f){
@@ -406,25 +413,19 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	
-//    // draw the left:
-//	ofSetHexColor(0x333333);
-//	ofRect(0,0,256,400);
-//	ofSetHexColor(0xFFFFFF);
-//	for (int i = 0; i < 256; i++){
-//		ofLine(i,200,i,200+left[i]*400);
-//	}
     
     ofSetColor(ofColor::black);
     dinFont.drawString("Enfys Prototype: Note Circle Sound Popper",50, 200);
 	
 	ofSetHexColor(0x000000);
 	
-	dinFont.drawString( "Pitch: " + ofToString((int)AA.pitch) +
-                       "\nAmplitude: " + ofToString(AA.amplitude,3) +
-                       "\nOctaved note is: " + ofToString(midiToString(snapFreqToMIDI(AA.pitch)),3) +
-                       "\nJust sharpend note: " + noteFromIndex(snapFreqToMIDI(AA.pitch)%12) +
-                       "\nJust note: " + justNoteFromIndex(snapFreqToMIDI(AA.pitch)%12)
+	dinFont.drawString( "pitch is : " + ofToString((int)aubio.pitch) + "\namplitude is : " + ofToString(aubio.amplitude,3), 50,300);
+	
+	dinFont.drawString( "Pitch: " + ofToString((int)aubio.pitch) +
+                       "\nAmplitude: " + ofToString(aubio.amplitude,3) +
+                       "\nOctaved note is: " + ofToString(midiToString(snapFreqToMIDI(aubio.pitch)),3) +
+                       "\nJust sharpend note: " + noteFromIndex(snapFreqToMIDI(aubio.pitch)%12) +
+                       "\nJust note: " + justNoteFromIndex(snapFreqToMIDI(aubio.pitch)%12)
                        ,50,500);
 	
     float maxCircleRadius = (ofGetWidth()/circleFillValues.size())/2.f;
@@ -446,22 +447,6 @@ void testApp::draw(){
         dinFont.drawString(stringForNoteIndex(i), circleXCentre-widthOfNoteStringInUsingFont/2.f, circleYCentre+heightOfNoteStringInUsingFont/2.f);
     }
 }
-
-
-//--------------------------------------------------------------
-void testApp::audioReceived (float * input, int bufferSize, int nChannels){
-	
-	
-	// samples are "interleaved"
-	for (int i = 0; i < bufferSize; i++){
-		left[i] = input[i*2];
-		right[i] = input[i*2+1];
-	}
-    
-	AA.processAudio(left, bufferSize);
-}
-
-
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
@@ -487,5 +472,32 @@ void testApp::mousePressed(int x, int y, int button){
 
 void testApp::mouseReleased(){
 	
+}
+
+//--------------------------------------------------------------
+void testApp::audioIn(float * input, int bufferSize, int nChannels){
+	
+	float curVol = 0.0;
+	
+	// samples are "interleaved"
+	int numCounted = 0;
+    
+	//lets go through each sample and calculate the root mean square which is a rough way to calculate volume
+	for (int i = 0; i < bufferSize; i++){
+		left[i]		= input[i*2]*0.5;
+		right[i]	= input[i*2+1]*0.5;
+        
+		curVol += left[i] * left[i];
+		curVol += right[i] * right[i];
+		numCounted+=2;
+	}
+	
+	//this is how we get the mean of rms :)
+	curVol /= (float)numCounted;
+	
+	// this is how we get the root of rms :)
+	curVol = sqrt( curVol );
+	
+    aubio.processAudio(left, bufferSize);
 }
 

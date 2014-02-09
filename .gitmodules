@@ -7,3 +7,6 @@
 [submodule "addons/ofxFatLines"]
 	path = addons/ofxFatLines
 	url = git://github.com/roymacdonald/ofxFatLines.git
+[submodule "addons/ofxAubio"]
+	path = addons/ofxAubio
+	url = git://github.com/jefftimesten/ofxAubio.git
